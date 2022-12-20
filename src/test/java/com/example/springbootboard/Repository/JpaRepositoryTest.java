@@ -1,7 +1,9 @@
 package com.example.springbootboard.Repository;
 
 import com.example.springbootboard.Config.JpaConfig;
+import com.example.springbootboard.Config.SecurityConfig;
 import com.example.springbootboard.domain.Article;
+import com.example.springbootboard.domain.UserAccount;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,15 +17,17 @@ import java.util.Optional;
 
 import  static org.assertj.core.api.Assertions.*;
 @DisplayName("Crud 테스트")
-@Import(JpaConfig.class)
+@Import({JpaConfig.class, SecurityConfig.class})
 @SpringBootTest
 public class JpaRepositoryTest {
     @Autowired
     private ArticleRepository articleRepository;
     @Autowired
     private ArticleCommentRepository articleCommentRepository;
+    @Autowired
+    private UserAccountRepository userAccountRepository;
 
-    @Disabled
+    //@Disabled
     @DisplayName("select test")
     @Test
     public void givenTestData_whenSelecting_thenWorksFine(){
@@ -42,10 +46,11 @@ public class JpaRepositoryTest {
     void givenTestData_whenInserting_thenWorksFine() {
         // Given
         long previousCount = articleRepository.count();
-
+        UserAccount userAccount = userAccountRepository.save(UserAccount.of("uno", "pw", null, null, null));
+        Article article = Article.of(userAccount, "new article", "new content", "#spring");
         // When
-        Article savedArticle = articleRepository.save(Article.of("new article", "new content", "#spring"));
-
+        //Article savedArticle = articleRepository.save(Article.of("new article", "new content", "#spring"));
+        articleRepository.save(article);
         // Then
         assertThat(articleRepository.count()).isEqualTo(previousCount + 1);
     }
