@@ -1,4 +1,7 @@
 package com.example.springbootboard.Repository;
 
-public interface UserAccountRepository extends org.springframework.data.jpa.repository.JpaRepository<com.example.springbootboard.domain.UserAccount, java.lang.Long> {
+import com.example.springbootboard.domain.UserAccount;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserAccountRepository extends JpaRepository<UserAccount, Long> {
 }
