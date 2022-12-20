@@ -2,6 +2,7 @@ package com.example.springbootboard.Repository;
 
 import com.example.springbootboard.Config.JpaConfig;
 import com.example.springbootboard.domain.Article;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class JpaRepositoryTest {
     @Autowired
     private ArticleCommentRepository articleCommentRepository;
 
+    @Disabled
     @DisplayName("select test")
     @Test
     public void givenTestData_whenSelecting_thenWorksFine(){
@@ -34,7 +36,7 @@ public class JpaRepositoryTest {
                 .isNotNull()
                 .hasSize(123);
     }
-
+    @Disabled
     @DisplayName("insert 테스트")
     @Test
     void givenTestData_whenInserting_thenWorksFine() {
@@ -47,7 +49,7 @@ public class JpaRepositoryTest {
         // Then
         assertThat(articleRepository.count()).isEqualTo(previousCount + 1);
     }
-
+    @Disabled
     @DisplayName("update 테스트")
     @Test
     void givenTestData_whenUpdating_thenWorksFine() {
@@ -62,7 +64,7 @@ public class JpaRepositoryTest {
         // Then
         assertThat(savedArticle).hasFieldOrPropertyWithValue("hashtag", updatedHashtag);
     }
-
+    @Disabled
     @DisplayName("delete 테스트")
     @Test
     void givenTestData_whenDeleting_thenWorksFine() {

@@ -34,7 +34,8 @@ spring:
     rest:
       base-path: /api
       detection-strategy: all
-
+  thymeleaf3:
+    decoupled-logic: true
 ---
 
 spring:
