@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Optional;
 
 import  static org.assertj.core.api.Assertions.*;
+
+@Disabled
 @DisplayName("Crud 테스트")
 @Import({JpaConfig.class, SecurityConfig.class})
 @SpringBootTest

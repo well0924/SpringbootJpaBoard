@@ -2,7 +2,6 @@ package com.example.springbootboard.Service;
 
 import com.example.springbootboard.Repository.ArticleCommentRepository;
 import com.example.springbootboard.Repository.ArticleRepository;
-import com.example.springbootboard.Repository.UserAccountRepository;
 import com.example.springbootboard.domain.Article;
 import com.example.springbootboard.domain.ArticleComment;
 import com.example.springbootboard.domain.UserAccount;
@@ -19,12 +18,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
 
+@Disabled
 @DisplayName("비즈니스 로직 - 댓글")
 @ExtendWith(MockitoExtension.class)
 class ArticleCommentServiceTest {
@@ -35,8 +35,7 @@ class ArticleCommentServiceTest {
     private ArticleRepository articleRepository;
     @Mock
     private ArticleCommentRepository articleCommentRepository;
-    @Mock
-    private UserAccountRepository userAccountRepository;
+
 
     @Disabled
     @DisplayName("게시글 ID로 조회하면, 해당하는 댓글 리스트를 반환한다.")
