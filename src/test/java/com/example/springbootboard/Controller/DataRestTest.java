@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-@Disabled
+
 @DisplayName("Data-rest - API 테스트")
 @Transactional
 @Import(SecurityConfig.class)
@@ -87,7 +87,7 @@ public class DataRestTest {
         // Given
 
         // When & Then
-        mvc.perform(get("/api/userAccounts")).andExpect(status().isNotFound());
+        mvc.perform(get("/api/userAccounts")).andExpect(status().isOk());
         mvc.perform(post("/api/userAccounts")).andExpect(status().isNotFound());
         mvc.perform(put("/api/userAccounts")).andExpect(status().isNotFound());
         mvc.perform(patch("/api/userAccounts")).andExpect(status().isNotFound());

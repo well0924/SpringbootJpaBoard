@@ -7,22 +7,24 @@
     <meta name="author" content="Uno Kim">
     <title>Title</title>
     <link href="/css/search-bar.css" rel="stylesheet">
+    <link href="/css/articles/table-header.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body>
 <header id="header"></header>
 
 <main class="container">
+
     <div class="row">
         <div class="card card-margin search-form">
             <div class="card-body p-0">
-                <form id="card search-form">
+                <form action="/articles" method="get">
                     <div class="row">
                         <div class="col-12">
                             <div class="row no-gutters">
                                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                     <label for="search-type" hidden>검색 유형</label>
-                                    <select class="form-control" id="search-type">
+                                    <select class="form-control" id="search-type" name="searchType">
                                         <option>제목</option>
                                         <option>본문</option>
                                         <option>id</option>
@@ -32,7 +34,7 @@
                                 </div>
                                 <div class="col-lg-8 col-md-6 col-sm-12 p-0">
                                     <label for="search-value" hidden>검색어</label>
-                                    <input type="text" placeholder="검색어..." class="form-control" id="search-value" name="search-value">
+                                    <input type="text" placeholder="검색어..." class="form-control" id="search-value" name="searchValue">
                                 </div>
                                 <div class="col-lg-1 col-md-3 col-sm-12 p-0">
                                     <button type="submit" class="btn btn-base">
@@ -53,10 +55,10 @@
     <table class="table" id="article-table">
         <thead>
         <tr>
-            <th class="title col-6">제목</th>
-            <th class="hashtag col-2">해시태그</th>
-            <th class="user-id col">작성자</th>
-            <th class="created-at col">작성일</th>
+            <th class="title col-6"><a>제목</a></th>
+            <th class="hashtag col-2"><a>해시태그</a></th>
+            <th class="user-id col"><a>작성자</a></th>
+            <th class="created-at col"><a>작성일</a></th>
         <tr>
         </thead>
         <tbody>

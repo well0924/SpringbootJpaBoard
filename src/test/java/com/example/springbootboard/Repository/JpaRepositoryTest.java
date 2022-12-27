@@ -8,16 +8,14 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
 import java.util.List;
-import java.util.Optional;
 
 import  static org.assertj.core.api.Assertions.*;
 
-@Disabled
+
 @DisplayName("Crud 테스트")
 @Import({JpaConfig.class, SecurityConfig.class})
 @SpringBootTest
@@ -40,9 +38,8 @@ public class JpaRepositoryTest {
         //then
         assertThat(articles)
                 .isNotNull()
-                .hasSize(123);
+                .hasSize(124);
     }
-    @Disabled
     @DisplayName("insert 테스트")
     @Test
     void givenTestData_whenInserting_thenWorksFine() {
@@ -56,12 +53,12 @@ public class JpaRepositoryTest {
         // Then
         assertThat(articleRepository.count()).isEqualTo(previousCount + 1);
     }
-    @Disabled
+//    @Disabled
     @DisplayName("update 테스트")
     @Test
     void givenTestData_whenUpdating_thenWorksFine() {
         // Given
-        Article article = articleRepository.findById(1L).orElseThrow();
+        Article article = articleRepository.findById(2L).orElseThrow(()->new RuntimeException("회원이 없습니다."));
         String updatedHashtag = "#springboot";
         article.setHashtag(updatedHashtag);
 
@@ -71,7 +68,7 @@ public class JpaRepositoryTest {
         // Then
         assertThat(savedArticle).hasFieldOrPropertyWithValue("hashtag", updatedHashtag);
     }
-    @Disabled
+//    @Disabled
     @DisplayName("delete 테스트")
     @Test
     void givenTestData_whenDeleting_thenWorksFine() {
