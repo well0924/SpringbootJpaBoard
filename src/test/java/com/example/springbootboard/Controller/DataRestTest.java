@@ -80,7 +80,7 @@ public class DataRestTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.valueOf("application/hal+json")));
     }
-    @Disabled
+    //@Disabled
     @DisplayName("[api] 회원 관련 API 는 일체 제공하지 않는다.")
     @Test
     void givenNothing_whenRequestingUserAccounts_thenThrowsException() throws Exception {

@@ -2,6 +2,7 @@ package com.example.springbootboard.Service;
 
 import com.example.springbootboard.Repository.ArticleCommentRepository;
 import com.example.springbootboard.Repository.ArticleRepository;
+import com.example.springbootboard.Repository.UserAccountRepository;
 import com.example.springbootboard.domain.Article;
 import com.example.springbootboard.domain.ArticleComment;
 import com.example.springbootboard.domain.UserAccount;
@@ -24,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
 
-@Disabled
+//@Disabled
 @DisplayName("비즈니스 로직 - 댓글")
 @ExtendWith(MockitoExtension.class)
 class ArticleCommentServiceTest {
@@ -36,8 +37,10 @@ class ArticleCommentServiceTest {
     @Mock
     private ArticleCommentRepository articleCommentRepository;
 
+    @Mock
+    private UserAccountRepository userAccountRepository;
 
-    @Disabled
+//    @Disabled
     @DisplayName("게시글 ID로 조회하면, 해당하는 댓글 리스트를 반환한다.")
     @Test
     void givenArticleId_whenSearchingArticleComments_thenReturnsArticleComments() {
@@ -62,12 +65,13 @@ class ArticleCommentServiceTest {
         // Given
         ArticleCommentDto dto = createArticleCommentDto("댓글");
         given(articleRepository.getReferenceById(dto.articleId())).willReturn(createArticle());
-
+        given(userAccountRepository.getReferenceById(dto.userAccountDto().id())).willReturn(createUserAccount());
         // When
         sut.saveArticleComment(dto);
 
         // Then
         then(articleRepository).should().getReferenceById(dto.articleId());
+        then(userAccountRepository).should().getReferenceById(dto.userAccountDto().id());
         then(articleCommentRepository).should().save(any(ArticleComment.class));
     }
 
@@ -83,6 +87,7 @@ class ArticleCommentServiceTest {
 
         // Then
         then(articleRepository).should().getReferenceById(dto.articleId());
+        then(userAccountRepository).shouldHaveNoInteractions();
         then(articleCommentRepository).shouldHaveNoInteractions();
     }
 
