@@ -1,23 +1,25 @@
 package com.example.springbootboard.Repository;
 
-import com.example.springbootboard.Config.JpaConfig;
-import com.example.springbootboard.Config.SecurityConfig;
 import com.example.springbootboard.domain.Article;
 import com.example.springbootboard.domain.UserAccount;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.util.List;
+import java.util.Optional;
 
 import  static org.assertj.core.api.Assertions.*;
 
 
 @DisplayName("Crud 테스트")
-@Import({JpaConfig.class, SecurityConfig.class})
+@Import(JpaRepositoryTest.TestJpaConfig.class)
 @SpringBootTest
 public class JpaRepositoryTest {
     @Autowired
@@ -83,5 +85,14 @@ public class JpaRepositoryTest {
 
         // Then
         assertThat(articleRepository.count()).isEqualTo(previousArticleCount - 1);
+    }
+
+    @EnableJpaAuditing
+    @TestConfiguration
+    public static class TestJpaConfig {
+        @Bean
+        public AuditorAware<String> auditorAware() {
+            return () -> Optional.of("uno");
+        }
     }
 }

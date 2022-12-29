@@ -87,7 +87,7 @@ public class DataRestTest {
         // Given
 
         // When & Then
-        mvc.perform(get("/api/userAccounts")).andExpect(status().isOk());
+        mvc.perform(get("/api/userAccounts")).andExpect(status().isNotFound());
         mvc.perform(post("/api/userAccounts")).andExpect(status().isNotFound());
         mvc.perform(put("/api/userAccounts")).andExpect(status().isNotFound());
         mvc.perform(patch("/api/userAccounts")).andExpect(status().isNotFound());
